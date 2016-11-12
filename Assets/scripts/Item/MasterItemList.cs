@@ -4,15 +4,11 @@ using System.Collections;
 public class MasterItemList : MonoBehaviour {
 	public GameObject[] Items;
 	public GameObject Ingredient;
-	private GameObject[] Ingredients;
+	public GameObject[] Ingredients;
 
 
 	public void Start(){
-		Ingredients = new GameObject[5];
-		for (int i = 0; i < 5; i++) {
-			Ingredients [i] = Instantiate (Ingredient);
-			Ingredients [i].SetActive (false);
-		}
+		
 	}
 
 	public void spawnIngredient(Vector3 a){
