@@ -19,6 +19,8 @@ public class bombScript : MonoBehaviour {
 	IEnumerator Detonate(){
 		yield return new WaitForSeconds (timeToDetonate);
 		explostion.SetActive (true);
+		yield return new WaitForSeconds (.2f);
+		gameObject.SetActive (false);
 
 	}
 }

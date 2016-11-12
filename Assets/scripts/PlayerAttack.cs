@@ -9,17 +9,39 @@ public class PlayerAttack : MonoBehaviour {
 	public GameObject mainWeapon;
 	PlayerInventory inventory;
 	InputScript input;
+	PlayerMovementScript PMS;
+
+	bool attacking = false;
 
 	// Use this for initialization
 	void Start () {
-		input.
+		inventory = GetComponent<PlayerInventory> ();
+		input = GetComponent<InputScript> ();
+		PMS = GetComponent<PlayerMovementScript> ();
+		input.assignXButton (UseItem , null);
+		input.assignAButton (Attack, null);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+	public void Attack(){
+		if (!attacking) {
+			
+			StartCoroutine (AttackEnumer ());
+		}
+	
+	}
+	IEnumerator AttackEnumer(){
+		attacking = true;
+		mainWeapon.transform.eulerAngles = new Vector3 (0, 0, PMS.getFacingDegree ());
 
+		mainWeapon.SetActive (true);
+		yield return new WaitForSeconds (.2f);
+		mainWeapon.SetActive (false);
+		attacking = false;
+	}
 	public void UseItem(){
 		if (inventory.getCurrentItem () == Item.Bomb) {
 			UseBomb ();
