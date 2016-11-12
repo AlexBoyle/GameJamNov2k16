@@ -5,6 +5,7 @@ public class HealthScrit : MonoBehaviour {
 	public int currentHealth = 0;
 	public delegate void voidDel();
 	public voidDel deathFunction;
+	public voidDel coindrop;
 	public GameObject fireParticles;
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,7 @@ public class HealthScrit : MonoBehaviour {
 			if (deathFunction != null) {
 				gameObject.SetActive (false);
 				deathFunction ();
+				coindrop ();
 			}
 
 		}
