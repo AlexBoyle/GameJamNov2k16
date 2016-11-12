@@ -8,11 +8,11 @@ public class PlayerAttack : MonoBehaviour {
 	public GameObject waterBucket;
 	public GameObject mainWeapon;
 	PlayerInventory inventory;
-
+	InputScript input;
 
 	// Use this for initialization
 	void Start () {
-	
+		input.
 	}
 	
 	// Update is called once per frame
