@@ -14,6 +14,8 @@ public class Animator : MonoBehaviour {
 		current = Animations[0].getAnimation();
 	}
 	public void currentSprite(int a){
+		if (a == -1)
+			current = null;
 		current = Animations[a].getAnimation();
 	}
 	

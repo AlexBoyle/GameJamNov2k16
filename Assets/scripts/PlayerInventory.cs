@@ -3,11 +3,17 @@ using System.Collections;
 
 public class PlayerInventory : MonoBehaviour {
 
-	Item currentItem;
+	public Item currentItem;
 	int currentIngredients;
-	//void OnCollisionEnter2D(Collider2D col){
-	//	Debug.Log (col.tag);
-	//}
+	private MasterItemList itemMaster;
+	public int buffer = 0;
+	public void Start(){
+		itemMaster = GameObject.Find ("ItemMaster").GetComponent<MasterItemList> ();
+	}
+	public void OnTriggerEnter2D(Collider2D col){
+		if(buffer <=  0 && col.tag == "Item")
+			ChangeItem (itemMaster.getItem(col.gameObject.GetComponent<ItemScript> ().item).pickUp());
+	}
 	public void AddIngredient(){
 		currentIngredients++;
 		if (currentIngredients >= 3) {
@@ -19,12 +25,17 @@ public class PlayerInventory : MonoBehaviour {
 	}
 	public void ChangeItem(Item newItem){
 		if (currentItem != Item.none) {
-			// eject current item
+			itemMaster.getItem (currentItem).drop (transform.position- (new Vector3(0,0,0)));
 		}
+		buffer = 30;
 		currentItem = newItem;
 	}
 	public Item getCurrentItem(){
 		return currentItem;
+	}
+	void FixedUpdate () {
+		if (buffer > 0)
+			buffer--;
 	}
 }
 
