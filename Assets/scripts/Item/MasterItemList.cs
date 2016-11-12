@@ -3,7 +3,6 @@ using System.Collections;
 
 public class MasterItemList : MonoBehaviour {
 	public GameObject[] Items;
-	public GameObject Ingredient;
 	public GameObject[] Ingredients;
 
 

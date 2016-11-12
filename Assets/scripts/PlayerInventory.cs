@@ -26,6 +26,7 @@ public class PlayerInventory : MonoBehaviour {
 		}
 	}
 	public void RemoveIngredients(){
+		ChangeItem (Item.none);
 		for (int i = 0; i < currentIngredients; i++) {
 			itemMaster.spawnIngredient (transform.position);
 		}
