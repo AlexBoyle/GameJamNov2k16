@@ -5,11 +5,12 @@ public class SpawnScript : MonoBehaviour {
 	public HealthScrit playerHealth;
 	public float waitTime = 1f;
 	public GameObject player;
-	public Transform[] spawnPoints;
+	public GameObject[] spawnPoints;
 
 	void Start()
 	{
 		//Spawn ();
+		spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
 		playerHealth.deathFunction = Respawn;
 	}
 		
@@ -36,7 +37,7 @@ public class SpawnScript : MonoBehaviour {
 	IEnumerator RespawnEnumerator(){
 		yield return new WaitForSeconds (waitTime);
 		int spawnPointIndex = Random.Range (0, spawnPoints.Length);
-		player.transform.position = spawnPoints [spawnPointIndex].position;
-		gameObject.SetActive (true);
+		player.transform.position = spawnPoints [spawnPointIndex].transform.position;
+		player.gameObject.SetActive (true);
 	}
 }
