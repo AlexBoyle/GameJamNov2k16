@@ -11,8 +11,12 @@ public class PlayerInventory : MonoBehaviour {
 		itemMaster = GameObject.Find ("ItemMaster").GetComponent<MasterItemList> ();
 	}
 	public void OnTriggerEnter2D(Collider2D col){
-		if(buffer <=  0 && col.tag == "Item")
-			ChangeItem (itemMaster.getItem(col.gameObject.GetComponent<ItemScript> ().item).pickUp());
+		if (col.tag == "Ingredients") {
+
+		}
+		if (buffer <= 0 && col.tag == "Item") {
+			ChangeItem (itemMaster.getItem (col.gameObject.GetComponent<ItemScript> ().item).pickUp ());
+		}
 	}
 	public void AddIngredient(){
 		currentIngredients++;
