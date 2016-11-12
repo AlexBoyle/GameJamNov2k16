@@ -5,6 +5,7 @@ public class HealthScrit : MonoBehaviour {
 	public int currentHealth = 0;
 	public delegate void voidDel();
 	public voidDel deathFunction;
+	public GameObject fireParticles;
 	// Use this for initialization
 	void Start () {
 	
@@ -28,6 +29,15 @@ public class HealthScrit : MonoBehaviour {
 		
 		if (other.tag == "Attack") {
 			DealDamage (1);
+		} else if (other.tag == "Fire") {
+			StartCoroutine (Ignite ());
 		}
+
+	}
+	IEnumerator Ignite(){
+		fireParticles.SetActive (true);
+		yield return new WaitForSeconds (1);
+		fireParticles.SetActive (false);
+		DealDamage (1);
 	}
 }

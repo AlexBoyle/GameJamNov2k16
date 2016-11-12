@@ -28,10 +28,10 @@ public class PlayerAttack : MonoBehaviour {
 	}
 	public void Attack(){
 		if (!attacking) {
-			
+
 			StartCoroutine (AttackEnumer ());
 		}
-	
+
 	}
 	IEnumerator AttackEnumer(){
 		attacking = true;
@@ -48,16 +48,45 @@ public class PlayerAttack : MonoBehaviour {
 		}else if (inventory.getCurrentItem () == Item.Buckets) {
 			
 		}else if (inventory.getCurrentItem () == Item.Torch) {
-			
+			UseTorch ();
 		}else if (inventory.getCurrentItem () == Item.Whip) {
-			
+			UseWhip ();
 		}
 	}
+	public void UseTorch(){
+		if (!attacking) {
 
+			StartCoroutine (TorchEnumer ());
+		}
+
+	}
+	IEnumerator TorchEnumer(){
+		attacking = true;
+		torch.transform.eulerAngles = new Vector3 (0, 0, PMS.getFacingDegree ());
+
+		torch.SetActive (true);
+		yield return new WaitForSeconds (.2f);
+		torch.SetActive (false);
+		attacking = false;
+	}
     void UseBomb(){
 		if (bomb.activeSelf == false) {
 			bomb.transform.position = transform.position;
 			bomb.SetActive (true);
 		}
+	}
+	void UseWhip(){
+		if (!attacking) {
+			StartCoroutine (WhipEnumer());
+		}
+	}
+	IEnumerator WhipEnumer(){
+		attacking = true;
+		whip.transform.eulerAngles = new Vector3 (0, 0, PMS.getFacingDegree ());
+
+		whip.SetActive (true);
+		yield return new WaitForSeconds (.2f);
+		whip.SetActive (false);
+		attacking = false;
 	}
 }
