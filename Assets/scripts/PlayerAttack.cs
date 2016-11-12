@@ -46,7 +46,7 @@ public class PlayerAttack : MonoBehaviour {
 		if (inventory.getCurrentItem () == Item.Bomb) {
 			UseBomb ();
 		}else if (inventory.getCurrentItem () == Item.Buckets) {
-			
+			UseBucket ();
 		}else if (inventory.getCurrentItem () == Item.Torch) {
 			UseTorch ();
 		}else if (inventory.getCurrentItem () == Item.Whip) {
@@ -89,4 +89,19 @@ public class PlayerAttack : MonoBehaviour {
 		whip.SetActive (false);
 		attacking = false;
 	}
+	void UseBucket(){
+		if (!attacking) {
+			StartCoroutine (BucketEnumer());
+		}
+	}
+	IEnumerator BucketEnumer(){
+		attacking = true;
+		waterBucket.transform.eulerAngles = new Vector3 (0, 0, PMS.getFacingDegree ());
+
+		waterBucket.SetActive (true);
+		yield return new WaitForSeconds (.2f);
+		waterBucket.SetActive (false);
+		attacking = false;
+	}
+
 }

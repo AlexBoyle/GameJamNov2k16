@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Whip : MonoBehaviour {
-	
+public class waterPush : MonoBehaviour {
 	public float speed;
 	// Use this for initialization
-	void Awake () {
-		
+	void Start () {
+	
 	}
 	
 	// Update is called once per frame
@@ -14,15 +13,14 @@ public class Whip : MonoBehaviour {
 	
 	}
 	void OnTriggerEnter2D(Collider2D other){
-		Debug.Log ("we did");
+		
 		if (other.tag == "bombParent" || other.tag == "Player" || other.tag == "Ingredient" || other.tag ==  "Item") {
 			if (other.tag == "Player") {
 				other.GetComponent<PlayerMovementScript> ().DisableMovement ( .3f);
 			}
-			Vector2 direction =  transform.parent.position - other.transform.position;
+			Vector2 direction =  other.transform.position - transform.parent.position;
 			other.GetComponent<Rigidbody2D> ().AddForce (direction * speed);
 		}
 
 	}
-
 }
