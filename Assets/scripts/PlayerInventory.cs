@@ -10,6 +10,9 @@ public class PlayerInventory : MonoBehaviour {
 	//}
 	public void AddIngredient(){
 		currentIngredients++;
+		if (currentIngredients >= 3) {
+			// TODO call alex script
+		}
 	}
 	public void RemoveIngredients(){
 		currentIngredients = 0;
@@ -20,13 +23,16 @@ public class PlayerInventory : MonoBehaviour {
 		}
 		currentItem = newItem;
 	}
+	public Item getCurrentItem(){
+		return currentItem;
+	}
 }
 
 
 public enum Item{
-	Bomb,
-	Torch,
-	Whip,
-	Buckets,
-	none
+	Bomb = 0,
+	Torch = 1,
+	Whip =2 ,
+	Buckets =3,
+	none=4
 }
