@@ -41,7 +41,8 @@ public class PlayerAttack : MonoBehaviour {
 	}
 	IEnumerator AttackEnumer(){
 		attacking = true;
-		mainWeapon.transform.eulerAngles = new Vector3 (0, 0, PMS.getFacingDegree ());
+		float a = PMS.getFacingDegree () == 180 ? 180 : 0; 
+		mainWeapon.transform.eulerAngles = new Vector3 (a, 0, PMS.getFacingDegree ());
 
 		mainWeapon.SetActive (true);
 		yield return new WaitForSeconds (.2f);

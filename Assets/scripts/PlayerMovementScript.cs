@@ -7,6 +7,10 @@ public class PlayerMovementScript : MonoBehaviour {
 	float currentSpeed = 0;
 	InputScript IS;
 	float deadSize = .15f;
+	public Sprite front;
+	public Sprite left;
+	public Sprite back;
+	public Sprite right;
 	bool canMove = true;
 	//PlayerStateMachine state;
 	FacingDirection facing;
@@ -65,32 +69,32 @@ public class PlayerMovementScript : MonoBehaviour {
 	void CalculateFacing(float x, float y){
 		if (x > deadSize && x > y) {
 			facing = FacingDirection.right;
-			//spriteAnimator.PlayMoveRight ();				
+			gameObject.GetComponent<SpriteRenderer> ().sprite = right;			
 
 		} else if (x <- deadSize && x < y) {
 			facing = FacingDirection.left;
-			//spriteAnimator.PlayMoveLeft ();
+			gameObject.GetComponent<SpriteRenderer> ().sprite = left;
 
 		} else if (y > deadSize) {
 			facing = FacingDirection.up;
-			//spriteAnimator.PlayMoveUp ();
+			gameObject.GetComponent<SpriteRenderer> ().sprite = back;
 
 		} else if (y < -deadSize) {
 			facing = FacingDirection.down;
-			//spriteAnimator.PlayMoveDown ();						
+			gameObject.GetComponent<SpriteRenderer> ().sprite = front;						
 
 		}
 
 
 		if (RB.velocity == Vector2.zero) {
 			if (facing == FacingDirection.left) {
-				//spriteAnimator.PlayfaceLeft ();				
+				gameObject.GetComponent<SpriteRenderer> ().sprite = left;				
 			}else if (facing == FacingDirection.right) {
-				//spriteAnimator.PlayfaceRight ();				
+				gameObject.GetComponent<SpriteRenderer> ().sprite = right;				
 			}else if (facing == FacingDirection.up) {
-				//spriteAnimator.PlayfaceUp ();				
+				gameObject.GetComponent<SpriteRenderer> ().sprite = back;				
 			}else if (facing == FacingDirection.down) {
-				//spriteAnimator.PlayfaceDown ();
+				gameObject.GetComponent<SpriteRenderer> ().sprite = front;
 			}
 		}
 	}
