@@ -11,6 +11,7 @@ public class MasterItemList : MonoBehaviour {
 		Ingredients = new GameObject[5];
 		for (int i = 0; i < 5; i++) {
 			Ingredients [i] = Instantiate (Ingredient);
+			Ingredients [i].SetActive (false);
 		}
 	}
 
