@@ -17,8 +17,16 @@ public class HealthScrit : MonoBehaviour {
 	public void DealDamage(int amount){
 		currentHealth -= amount;
 		if (currentHealth <= 0) {
-			deathFunction ();
+			if (deathFunction != null) {
+				deathFunction ();
+			}
+			Debug.Log ("wedid");
 		}
 	}
-
+	public void OnTriggerEnter2D(Collider2D other){
+		Debug.Log (other.tag);
+		if (other.tag == "Attack") {
+			DealDamage (1);
+		}
+	}
 }
