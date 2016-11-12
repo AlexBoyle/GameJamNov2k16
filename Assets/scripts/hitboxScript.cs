@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class hitboxScript : MonoBehaviour {
-	[SerializeField]
-	public Item type;
+	public int playerNumber;
 	// Use this for initialization
 	void Start () {
 	
@@ -13,8 +12,5 @@ public class hitboxScript : MonoBehaviour {
 	void Update () {
 	
 	}
-	public Item GetType(){
-		return type;
 
-	}
 }

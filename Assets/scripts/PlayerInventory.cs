@@ -4,14 +4,19 @@ using System.Collections;
 public class PlayerInventory : MonoBehaviour {
 
 	public Item currentItem;
-	int currentIngredients;
+	public int currentIngredients;
 	private MasterItemList itemMaster;
 	public int buffer = 0;
 	public void Start(){
 		itemMaster = GameObject.Find ("ItemMaster").GetComponent<MasterItemList> ();
+		gameObject.GetComponent<HealthScrit> ().coindrop = RemoveIngredients;
 	}
 	public void OnTriggerEnter2D(Collider2D col){
-		if(buffer <=  0 && col.tag == "Item")
+		if (col.tag == "Finish") {
+			col.GetComponent<ingredient>().pickUp ();
+			AddIngredient ();
+		}
+		else if(buffer <=  0 && col.tag == "Item")
 			ChangeItem (itemMaster.getItem(col.gameObject.GetComponent<ItemScript> ().item).pickUp());
 	}
 	public void AddIngredient(){
@@ -21,6 +26,9 @@ public class PlayerInventory : MonoBehaviour {
 		}
 	}
 	public void RemoveIngredients(){
+		for (int i = 0; i < currentIngredients; i++) {
+			itemMaster.spawnIngredient (transform.position);
+		}
 		currentIngredients = 0;
 	}
 	public void ChangeItem(Item newItem){
