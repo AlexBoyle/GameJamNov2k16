@@ -27,6 +27,7 @@ public class PlayerMovementScript : MonoBehaviour {
 	
 	}
 	public void ProcessMovement(float x,  float y){
+		if (canMove) {
 			if (x < deadSize && x > -deadSize) {
 				x = 0;
 			}
@@ -35,6 +36,7 @@ public class PlayerMovementScript : MonoBehaviour {
 			}
 			RB.velocity = new Vector2 (x * currentSpeed, y * currentSpeed);
 			CalculateFacing (x, y);
+		}
 
 	}
 	public void SetSpeed(float newSpeed = 0){
@@ -103,8 +105,17 @@ public class PlayerMovementScript : MonoBehaviour {
 			return 270;		
 		}
 	}
-}
 
+	public void DisableMovement( float delay){
+		StartCoroutine(ResetMovement(delay));
+	}
+	IEnumerator ResetMovement(float delay){
+		canMove = false;
+		yield return new WaitForSeconds (delay);
+		canMove = true;
+	}
+}
+	
 enum FacingDirection{
 	up,
 	down,
