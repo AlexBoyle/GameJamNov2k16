@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerInventory : MonoBehaviour {
 
-	Item currentItem;
+	public Item currentItem;
 	int currentIngredients;
 	//void OnCollisionEnter2D(Collider2D col){
 	//	Debug.Log (col.tag);
