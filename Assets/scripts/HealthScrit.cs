@@ -6,9 +6,10 @@ public class HealthScrit : MonoBehaviour {
 	public delegate void voidDel();
 	public voidDel deathFunction;
 	public GameObject fireParticles;
+	InputScript input;
 	// Use this for initialization
 	void Start () {
-	
+		input = GetComponent<InputScript>();
 	}
 	
 	// Update is called once per frame
@@ -28,9 +29,15 @@ public class HealthScrit : MonoBehaviour {
 	public void OnTriggerEnter2D(Collider2D other){
 		
 		if (other.tag == "Attack") {
-			DealDamage (1);
+			if (other.GetComponent<hitboxScript> ().playerNumber != input.playerNumber) {
+				DealDamage (1);
+			}
 		} else if (other.tag == "Fire") {
-			StartCoroutine (Ignite ());
+			if (other.GetComponent<hitboxScript> ().playerNumber != input.playerNumber) {
+				StartCoroutine (Ignite ());
+			}
+		} else if (other.tag == "Bomb") {
+			DealDamage (1);
 		}
 
 	}
