@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class ImmortalObjectScript : MonoBehaviour {
 	private bool[] players;
+	private int winner = -1;
 	private  int curlvl = 0;
 	private int count = 0;
 	private int menuLevel;
@@ -21,12 +22,15 @@ public class ImmortalObjectScript : MonoBehaviour {
 		if (curlvl > menuLevel) {
 			for (int i = 0; i < players.Length; i++) {
 				if(players[i]) {
-					//Instantiate (playerFab, Vector3.zero, Quaternion.identity) as GameObject;
+					//spawn players
 				}
 			}
 		}
 	}
-
+	public void win(int a){
+		winner = a;
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+	}
 	public bool[] getPlayers(){
 		return players;
 	}

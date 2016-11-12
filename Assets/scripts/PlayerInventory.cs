@@ -5,15 +5,9 @@ public class PlayerInventory : MonoBehaviour {
 
 	Item currentItem;
 	int currentIngredients;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	//void OnCollisionEnter2D(Collider2D col){
+	//	Debug.Log (col.tag);
+	//}
 	public void AddIngredient(){
 		currentIngredients++;
 	}
