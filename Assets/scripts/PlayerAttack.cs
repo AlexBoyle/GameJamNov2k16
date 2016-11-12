@@ -26,6 +26,12 @@ public class PlayerAttack : MonoBehaviour {
 	void Update () {
 	
 	}
+	void OnDisable(){
+		whip.SetActive (false);
+		torch.SetActive (false);
+		mainWeapon.SetActive (false);
+		waterBucket.SetActive (false);
+	}
 	public void Attack(){
 		if (!attacking) {
 

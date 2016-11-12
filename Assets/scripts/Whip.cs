@@ -20,7 +20,7 @@ public class Whip : MonoBehaviour {
 				other.GetComponent<PlayerMovementScript> ().DisableMovement ( .3f);
 			}
 			Vector2 direction =  transform.parent.position - other.transform.position;
-			other.GetComponent<Rigidbody2D> ().AddForce (direction * speed);
+			other.GetComponent<Rigidbody2D> ().AddForce (Vector3.Normalize( direction) * speed);
 		}
 
 	}
