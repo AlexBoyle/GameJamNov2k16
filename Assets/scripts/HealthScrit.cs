@@ -49,4 +49,7 @@ public class HealthScrit : MonoBehaviour {
 		fireParticles.SetActive (false);
 		DealDamage (1);
 	}
+	void OnDisable(){
+		fireParticles.SetActive(false);
+	}
 }

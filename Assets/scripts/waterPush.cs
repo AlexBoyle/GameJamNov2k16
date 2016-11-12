@@ -19,7 +19,7 @@ public class waterPush : MonoBehaviour {
 				other.GetComponent<PlayerMovementScript> ().DisableMovement ( .3f);
 			}
 			Vector2 direction =  other.transform.position - transform.parent.position;
-			other.GetComponent<Rigidbody2D> ().AddForce (direction * speed);
+			other.GetComponent<Rigidbody2D> ().AddForce (Vector3.Normalize( direction) * speed);
 		}
 
 	}

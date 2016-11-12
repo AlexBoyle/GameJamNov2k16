@@ -4,6 +4,7 @@ using System.Collections;
 public class ObstacleScript : MonoBehaviour {
 	public bool canRespawn;
 	public float respawnDelay = 5;
+	public Item counterType;
 	GameObject obstacle;
 	// Use this for initialization
 	void Start () {
@@ -15,7 +16,8 @@ public class ObstacleScript : MonoBehaviour {
 	
 	}
 	public void OnTriggerEnter2D(Collider2D other){
-		if (other.tag == gameObject.tag) {
+		if ((other.tag =="Bomb" && counterType == Item.Bomb) || (other.tag =="Fire" && counterType == Item.Torch)
+			|| (other.tag =="Water" && counterType == Item.Buckets)) {
 			// if object is permenantly destroyed
 			obstacle.SetActive (false);
 			if (canRespawn){
