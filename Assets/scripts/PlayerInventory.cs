@@ -29,6 +29,9 @@ public class PlayerInventory : MonoBehaviour {
 		}
 		currentItem = newItem;
 	}
+	public Item getCurrentItem(){
+		return currentItem;
+	}
 }
 
 
