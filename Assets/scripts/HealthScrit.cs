@@ -8,7 +8,9 @@ public class HealthScrit : MonoBehaviour {
 	public voidDel deathFunction;
 	public voidDel coindrop;
 	public GameObject fireParticles;
+	public ParticleSystem hitParticles;
 	InputScript input;
+
 	// Use this for initialization
 	void Start () {
 		maxHealth = currentHealth;
@@ -21,6 +23,7 @@ public class HealthScrit : MonoBehaviour {
 	}
 	public void DealDamage(int amount){
 		currentHealth -= amount;
+		hitParticles.Emit (25);
 		if (currentHealth <= 0) {
 			if (deathFunction != null) {
 				gameObject.SetActive (false);
@@ -41,16 +44,25 @@ public class HealthScrit : MonoBehaviour {
 				StartCoroutine (Ignite ());
 			}
 		} else if (other.tag == "Bomb") {
-			DealDamage (1);
+			DealDamage (3);
+		}else if (other.tag == "Hazard") {
+			DealDamage (3);
 		}
+
 
 	}
 	IEnumerator Ignite(){
 		fireParticles.SetActive (true);
-		yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (1);
+		DealDamage (1);
+		yield return new WaitForSeconds (1);
+		DealDamage (1);
+		yield return new WaitForSeconds (1);
+		DealDamage (1);
 		fireParticles.SetActive (false);
-		DealDamage (3);
+
 	}
+
 	void OnDisable(){
 		fireParticles.SetActive(false);
 		currentHealth = maxHealth;

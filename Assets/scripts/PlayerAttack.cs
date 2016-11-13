@@ -115,11 +115,15 @@ public class PlayerAttack : MonoBehaviour {
 	}
 	IEnumerator BucketEnumer(){
 		attacking = true;
+		PMS.DisableMovement();
+		yield return new WaitForSeconds (.1f);
 		waterBucket.transform.eulerAngles = new Vector3 (0, 0, PMS.getFacingDegree ());
 
 		waterBucket.SetActive (true);
-		yield return new WaitForSeconds (.2f);
+		yield return new WaitForSeconds (.1f);
 		waterBucket.SetActive (false);
+		yield return new WaitForSeconds (.1f);
+		PMS.canMove = true;
 		attacking = false;
 	}
 
