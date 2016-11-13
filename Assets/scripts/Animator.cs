@@ -6,7 +6,7 @@ public class Animator : MonoBehaviour {
 	public Sprite[] current;
 	public int aniSpeed = 2;
 	private int anicount = 0;
-	private int aniStep = 0;
+	public int aniStep = 0;
 	void Start(){
 		foreach(arr item in Animations){
 			item.set();
