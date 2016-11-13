@@ -3,6 +3,7 @@ using System.Collections;
 
 public class waterPush : MonoBehaviour {
 	public float speed;
+	public InputScript input;
 	// Use this for initialization
 	void Start () {
 	
@@ -15,7 +16,7 @@ public class waterPush : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 		
 		if (other.tag == "bombParent" || other.tag == "Player" || other.tag == "Ingredient" || other.tag ==  "Item") {
-			if (other.tag == "Player") {
+			if (other.tag == "Player" && other.GetComponent<InputScript>().playerNumber != input.playerNumber) {
 				other.GetComponent<PlayerMovementScript> ().DisableMovementTimed ( .3f);
 			}
 			Vector2 direction =  other.transform.position - transform.parent.position;
