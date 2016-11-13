@@ -31,6 +31,7 @@ public class PlayerAttack : MonoBehaviour {
 		torch.SetActive (false);
 		mainWeapon.SetActive (false);
 		waterBucket.SetActive (false);
+		attacking = false;
 	}
 	public void Attack(){
 		if (!attacking) {
