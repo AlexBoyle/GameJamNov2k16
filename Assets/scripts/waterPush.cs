@@ -15,7 +15,7 @@ public class waterPush : MonoBehaviour {
 	}
 	void OnTriggerEnter2D(Collider2D other){
 		Debug.Log (other.tag);
-		if (other.tag == "bombParent" || other.tag == "Player" || other.tag == "Ingredient" || other.tag ==  "ItemRB") {
+		if (other.tag == "Player") {
 			Vector2 direction = other.transform.position - transform.parent.position;
 			if (other.tag == "Player" && other.GetComponent<InputScript> ().playerNumber != input.playerNumber) {
 				other.GetComponent<PlayerMovementScript> ().DisableMovementTimed (.3f);
