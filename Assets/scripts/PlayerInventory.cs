@@ -30,6 +30,7 @@ public class PlayerInventory : MonoBehaviour {
 
 	IEnumerator win(){
 		winnerWraper.SetActive (true);
+		winnerWraper.GetComponentInChildren<TextMesh>().text = "Player " + gameObject.GetComponent<InputScript>().playerNumber + " Wins";
 		yield return new WaitForSeconds (3f);
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 	}
