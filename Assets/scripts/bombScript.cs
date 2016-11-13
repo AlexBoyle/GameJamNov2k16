@@ -5,19 +5,23 @@ public class bombScript : MonoBehaviour {
 	public float timeToDetonate;
 	public GameObject explostion;
 	public Sprite def;
+	bool canDetonate = false;
 	// Use this for initialization
 	void Start () {
 	
 	}
 	void OnEnable(){
-		StartCoroutine (Detonate ());
+		canDetonate = false;
+		StartCoroutine (Detonate (timeToDetonate));
 	}
 	// Update is called once per frame
 	void Update () {
 	
 	}
-	IEnumerator Detonate(){
-		yield return new WaitForSeconds (timeToDetonate);
+	IEnumerator Detonate(float delay){
+		yield return new WaitForSeconds (.1f);
+		canDetonate = true;
+		yield return new WaitForSeconds (delay);
 		explostion.SetActive (true);
 		gameObject.GetComponent<Animator> ().enabled = true;
 		yield return new WaitForSeconds (.2f);
@@ -28,5 +32,12 @@ public class bombScript : MonoBehaviour {
 		gameObject.SetActive (false);
 		gameObject.GetComponent<SpriteRenderer> ().sprite = def;
 
+	}
+
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.tag == "Player" && canDetonate) {
+			StopAllCoroutines ();
+			StartCoroutine (Detonate (0));
+		}
 	}
 }
