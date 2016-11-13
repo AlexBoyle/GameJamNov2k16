@@ -16,7 +16,7 @@ public class waterPush : MonoBehaviour {
 		
 		if (other.tag == "bombParent" || other.tag == "Player" || other.tag == "Ingredient" || other.tag ==  "Item") {
 			if (other.tag == "Player") {
-				other.GetComponent<PlayerMovementScript> ().DisableMovement ( .3f);
+				other.GetComponent<PlayerMovementScript> ().DisableMovementTimed ( .3f);
 			}
 			Vector2 direction =  other.transform.position - transform.parent.position;
 			other.GetComponent<Rigidbody2D> ().AddForce (Vector3.Normalize( direction) * speed);

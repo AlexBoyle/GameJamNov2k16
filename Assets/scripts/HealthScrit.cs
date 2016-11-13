@@ -45,7 +45,7 @@ public class HealthScrit : MonoBehaviour {
 	}
 	IEnumerator Ignite(){
 		fireParticles.SetActive (true);
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (2);
 		fireParticles.SetActive (false);
 		DealDamage (1);
 	}

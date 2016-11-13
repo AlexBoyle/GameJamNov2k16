@@ -11,7 +11,7 @@ public class PlayerMovementScript : MonoBehaviour {
 	public Sprite left;
 	public Sprite back;
 	public Sprite right;
-	bool canMove = true;
+	public bool canMove = true;
 	//PlayerStateMachine state;
 	FacingDirection facing;
 	//SpriteAnimator spriteAnimator;
@@ -110,7 +110,7 @@ public class PlayerMovementScript : MonoBehaviour {
 		}
 	}
 
-	public void DisableMovement( float delay){
+	public void DisableMovementTimed( float delay){
 		StartCoroutine(ResetMovement(delay));
 	}
 	IEnumerator ResetMovement(float delay){
@@ -120,6 +120,10 @@ public class PlayerMovementScript : MonoBehaviour {
 	}
 	void OnEnable(){
 		canMove = true;
+	}
+	public void DisableMovement(){
+		canMove = false;
+		RB.velocity = Vector2.zero;
 	}
 }
 	

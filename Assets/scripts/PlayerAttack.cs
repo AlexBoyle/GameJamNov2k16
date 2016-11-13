@@ -42,12 +42,16 @@ public class PlayerAttack : MonoBehaviour {
 	}
 	IEnumerator AttackEnumer(){
 		attacking = true;
+		PMS.DisableMovement();
+		yield return new WaitForSeconds (.05f);
 		float a = PMS.getFacingDegree () == 180 ? 180 : 0; 
 		mainWeapon.transform.eulerAngles = new Vector3 (a, 0, PMS.getFacingDegree ());
 
 		mainWeapon.SetActive (true);
-		yield return new WaitForSeconds (.2f);
+		yield return new WaitForSeconds (.1f);
 		mainWeapon.SetActive (false);
+		yield return new WaitForSeconds (.15f);
+		PMS.canMove = true;
 		attacking = false;
 	}
 	public void UseItem(){
@@ -70,11 +74,15 @@ public class PlayerAttack : MonoBehaviour {
 	}
 	IEnumerator TorchEnumer(){
 		attacking = true;
+		PMS.DisableMovement();
+		yield return new WaitForSeconds (.1f);
 		torch.transform.eulerAngles = new Vector3 (0, 0, PMS.getFacingDegree ());
 
 		torch.SetActive (true);
-		yield return new WaitForSeconds (.2f);
+		yield return new WaitForSeconds (.1f);
 		torch.SetActive (false);
+		yield return new WaitForSeconds (.2f);
+		PMS.canMove = true;
 		attacking = false;
 	}
     void UseBomb(){
@@ -90,11 +98,15 @@ public class PlayerAttack : MonoBehaviour {
 	}
 	IEnumerator WhipEnumer(){
 		attacking = true;
+		PMS.DisableMovement();
+		yield return new WaitForSeconds (.1f);
 		whip.transform.eulerAngles = new Vector3 (0, 0, PMS.getFacingDegree ());
 
 		whip.SetActive (true);
-		yield return new WaitForSeconds (.2f);
+		yield return new WaitForSeconds (.1f);
 		whip.SetActive (false);
+		yield return new WaitForSeconds (.1f);
+		PMS.canMove = true;
 		attacking = false;
 	}
 	void UseBucket(){
