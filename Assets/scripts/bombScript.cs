@@ -30,6 +30,7 @@ public class bombScript : MonoBehaviour {
 		gameObject.GetComponent<Animator> ().enabled = false;
 		gameObject.GetComponent<Animator> ().aniStep = 0;
 		gameObject.SetActive (false);
+		Debug.Log ("turoff");
 		gameObject.GetComponent<SpriteRenderer> ().sprite = def;
 
 	}
