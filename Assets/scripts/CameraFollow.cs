@@ -54,7 +54,6 @@ public class CameraFollow : MonoBehaviour {
 			currentDistance = Vector3.Distance (midpoint, p3Pos);
 		if(currentDistance < Vector3.Distance (midpoint, p4Pos))
 			currentDistance = Vector3.Distance (midpoint, p4Pos);
-		Debug.Log (midpoint);
 		currentDistance += 1;
 		midpoint = new Vector3 (midpoint.x, midpoint.y, -100);
 		// adjust camera to be big enough to show both players

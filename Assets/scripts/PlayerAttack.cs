@@ -7,6 +7,9 @@ public class PlayerAttack : MonoBehaviour {
 	public GameObject torch;
 	public GameObject waterBucket;
 	public GameObject mainWeapon;
+	public GameObject mainWeapon1;
+	public GameObject mainWeapon2;
+	public GameObject mainWeapon3;
 	PlayerInventory inventory;
 	InputScript input;
 	PlayerMovementScript PMS;
@@ -48,7 +51,16 @@ public class PlayerAttack : MonoBehaviour {
 		mainWeapon.transform.eulerAngles = new Vector3 (a, 0, PMS.getFacingDegree ());
 
 		mainWeapon.SetActive (true);
-		yield return new WaitForSeconds (.1f);
+		mainWeapon1.SetActive (true);
+		mainWeapon2.SetActive (false);
+		mainWeapon3.SetActive (false);
+		yield return new WaitForSeconds (.05f);
+		mainWeapon2.SetActive (true);
+		mainWeapon1.SetActive (false);
+		yield return new WaitForSeconds (.05f);
+		mainWeapon3.SetActive (true);
+		mainWeapon2.SetActive (false);
+		yield return new WaitForSeconds (.05f);
 		mainWeapon.SetActive (false);
 		yield return new WaitForSeconds (.15f);
 		PMS.canMove = true;
