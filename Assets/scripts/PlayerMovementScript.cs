@@ -118,6 +118,9 @@ public class PlayerMovementScript : MonoBehaviour {
 		yield return new WaitForSeconds (delay);
 		canMove = true;
 	}
+	void OnEnable(){
+		canMove = true;
+	}
 }
 	
 enum FacingDirection{

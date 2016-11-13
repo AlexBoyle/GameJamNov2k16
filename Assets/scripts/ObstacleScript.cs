@@ -17,7 +17,7 @@ public class ObstacleScript : MonoBehaviour {
 	}
 	public void OnTriggerEnter2D(Collider2D other){
 		if ((other.tag =="Bomb" && counterType == Item.Bomb) || (other.tag =="Fire" && counterType == Item.Torch)
-			|| (other.tag =="Water" && counterType == Item.Buckets)) {
+			|| (other.tag =="Bucket" && counterType == Item.Buckets)) {
 			// if object is permenantly destroyed
 			obstacle.SetActive (false);
 			if (canRespawn){
