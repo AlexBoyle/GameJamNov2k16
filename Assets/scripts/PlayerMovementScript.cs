@@ -111,7 +111,8 @@ public class PlayerMovementScript : MonoBehaviour {
 	}
 
 	public void DisableMovementTimed( float delay){
-		StartCoroutine(ResetMovement(delay));
+		if(gameObject.activeSelf)
+			StartCoroutine(ResetMovement(delay));
 	}
 	IEnumerator ResetMovement(float delay){
 		canMove = false;
