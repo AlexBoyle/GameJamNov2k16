@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerInventory : MonoBehaviour {
 
 	public Item currentItem;
 	public int currentIngredients;
+	public GameObject winnerWraper;
 	private MasterItemList itemMaster;
 	public int buffer = 0;
 	public void Start(){
@@ -22,8 +24,14 @@ public class PlayerInventory : MonoBehaviour {
 	public void AddIngredient(){
 		currentIngredients++;
 		if (currentIngredients >= 3) {
-			// TODO call alex script
+			StartCoroutine (win ());
 		}
+	}
+
+	IEnumerator win(){
+		winnerWraper.SetActive (true);
+		yield return new WaitForSeconds (3f);
+		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
 	}
 	public void RemoveIngredients(){
 		ChangeItem (Item.none);
