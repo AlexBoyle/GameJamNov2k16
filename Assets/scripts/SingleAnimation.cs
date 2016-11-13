@@ -17,8 +17,8 @@ public class SingleAnimation : MonoBehaviour {
 			aniStep++;
 		}
 		if (current.Length > 0) {
-			if (!((aniStep % current.Length) == 0))
-				gameObject.GetComponent<SpriteRenderer> ().sprite = current [aniStep % current.Length];
+			if (aniStep < current.Length)
+				gameObject.GetComponent<SpriteRenderer> ().sprite = current [aniStep];
 		}	
 	}
 }

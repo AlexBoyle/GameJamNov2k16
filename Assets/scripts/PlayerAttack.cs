@@ -138,7 +138,7 @@ public class PlayerAttack : MonoBehaviour {
 		//TODO: add water sound and uncomment
 		//sound.PlayWater ();
 		waterBucket.SetActive (true);
-		yield return new WaitForSeconds (.1f);
+		yield return new WaitForSeconds (.5f);
 		waterBucket.SetActive (false);
 		yield return new WaitForSeconds (.1f);
 		PMS.canMove = true;

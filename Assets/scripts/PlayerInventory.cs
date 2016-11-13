@@ -11,6 +11,7 @@ public class PlayerInventory : MonoBehaviour {
 	public int buffer = 0;
 	SoundPlayer sound;
 	public void Start(){
+		winnerWraper = GameObject.Find ("winnerWraper");
 		sound = GameObject.Find ("Main Camera").GetComponent<SoundPlayer>();
 		itemMaster = GameObject.Find ("ItemMaster").GetComponent<MasterItemList> ();
 		gameObject.GetComponent<HealthScrit> ().coindrop = RemoveIngredients;
