@@ -3,6 +3,7 @@ using System.Collections;
 
 public class HealthScrit : MonoBehaviour {
 	public int currentHealth = 0;
+	int maxHealth =0;
 	public delegate void voidDel();
 	public voidDel deathFunction;
 	public voidDel coindrop;
@@ -10,6 +11,7 @@ public class HealthScrit : MonoBehaviour {
 	InputScript input;
 	// Use this for initialization
 	void Start () {
+		maxHealth = currentHealth;
 		input = GetComponent<InputScript>();
 	}
 	
@@ -29,7 +31,7 @@ public class HealthScrit : MonoBehaviour {
 		}
 	}
 	public void OnTriggerEnter2D(Collider2D other){
-		
+		Debug.Log (other.tag);
 		if (other.tag == "Attack") {
 			if (other.GetComponent<hitboxScript> ().playerNumber != input.playerNumber) {
 				DealDamage (1);
@@ -47,9 +49,10 @@ public class HealthScrit : MonoBehaviour {
 		fireParticles.SetActive (true);
 		yield return new WaitForSeconds (2);
 		fireParticles.SetActive (false);
-		DealDamage (1);
+		DealDamage (3);
 	}
 	void OnDisable(){
 		fireParticles.SetActive(false);
+		currentHealth = maxHealth;
 	}
 }

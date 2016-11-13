@@ -16,6 +16,7 @@ public class ObstacleScript : MonoBehaviour {
 	
 	}
 	public void OnTriggerEnter2D(Collider2D other){
+		Debug.Log (other.tag);
 		if ((other.tag =="Bomb" && counterType == Item.Bomb) || (other.tag =="Fire" && counterType == Item.Torch)
 			|| (other.tag =="Bucket" && counterType == Item.Buckets)) {
 			// if object is permenantly destroyed
