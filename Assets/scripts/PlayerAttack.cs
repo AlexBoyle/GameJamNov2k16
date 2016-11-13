@@ -101,11 +101,10 @@ public class PlayerAttack : MonoBehaviour {
 		PMS.DisableMovement();
 		yield return new WaitForSeconds (.1f);
 		whip.transform.eulerAngles = new Vector3 (0, 0, PMS.getFacingDegree ());
-
 		whip.SetActive (true);
-		yield return new WaitForSeconds (.05f);
+		yield return new WaitForSeconds (.2f);
 		whip.SetActive (false);
-		yield return new WaitForSeconds (.05f);
+		yield return new WaitForSeconds (.1f);
 		PMS.canMove = true;
 		attacking = false;
 	}
