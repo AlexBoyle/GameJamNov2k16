@@ -10,9 +10,10 @@ public class HealthScrit : MonoBehaviour {
 	public GameObject fireParticles;
 	public ParticleSystem hitParticles;
 	InputScript input;
-
+	SoundPlayer sound;
 	// Use this for initialization
 	void Start () {
+		sound = GameObject.Find ("Main Camera").GetComponent<SoundPlayer>();
 		maxHealth = currentHealth;
 		input = GetComponent<InputScript>();
 	}
@@ -24,6 +25,7 @@ public class HealthScrit : MonoBehaviour {
 	public void DealDamage(int amount){
 		currentHealth -= amount;
 		hitParticles.Emit (25);
+		sound.PlayHit ();
 		if (currentHealth <= 0) {
 			if (deathFunction != null) {
 				gameObject.SetActive (false);
@@ -47,6 +49,8 @@ public class HealthScrit : MonoBehaviour {
 			DealDamage (3);
 		}else if (other.tag == "Hazard") {
 			DealDamage (3);
+		}else if (other.tag == "Whip") {
+			DealDamage (2);
 		}
 
 

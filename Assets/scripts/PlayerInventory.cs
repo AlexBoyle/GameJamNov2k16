@@ -7,7 +7,9 @@ public class PlayerInventory : MonoBehaviour {
 	public int currentIngredients;
 	private MasterItemList itemMaster;
 	public int buffer = 0;
+	SoundPlayer sound;
 	public void Start(){
+		sound = GameObject.Find ("Main Camera").GetComponent<SoundPlayer>();
 		itemMaster = GameObject.Find ("ItemMaster").GetComponent<MasterItemList> ();
 		gameObject.GetComponent<HealthScrit> ().coindrop = RemoveIngredients;
 	}
@@ -21,6 +23,7 @@ public class PlayerInventory : MonoBehaviour {
 	}
 	public void AddIngredient(){
 		currentIngredients++;
+		sound.PlayPickupIngredient ();
 		if (currentIngredients >= 3) {
 			// TODO call alex script
 		}
@@ -34,6 +37,7 @@ public class PlayerInventory : MonoBehaviour {
 	}
 	public void ChangeItem(Item newItem){
 		if (currentItem != Item.none) {
+			sound.PlayPickupItem ();
 			itemMaster.getItem (currentItem).drop (transform.position- (new Vector3(0,0,0)));
 		}
 		buffer = 30;

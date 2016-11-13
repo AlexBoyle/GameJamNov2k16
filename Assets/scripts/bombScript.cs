@@ -6,9 +6,10 @@ public class bombScript : MonoBehaviour {
 	public GameObject explostion;
 	public Sprite def;
 	bool canDetonate = false;
+	SoundPlayer sound;
 	// Use this for initialization
 	void Start () {
-	
+		sound = GameObject.Find ("Main Camera").GetComponent<SoundPlayer>();
 	}
 	void OnEnable(){
 		canDetonate = false;
@@ -23,6 +24,7 @@ public class bombScript : MonoBehaviour {
 		canDetonate = true;
 		yield return new WaitForSeconds (delay);
 		explostion.SetActive (true);
+		sound.PlayBombExplosion ();
 		gameObject.GetComponent<Animator> ().enabled = true;
 		yield return new WaitForSeconds (.2f);
 		gameObject.GetComponent<Animator> ().enabled = true;

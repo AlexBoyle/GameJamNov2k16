@@ -13,11 +13,13 @@ public class PlayerAttack : MonoBehaviour {
 	PlayerInventory inventory;
 	InputScript input;
 	PlayerMovementScript PMS;
+	SoundPlayer sound;
 
 	bool attacking = false;
 
 	// Use this for initialization
 	void Start () {
+		sound = GameObject.Find ("Main Camera").GetComponent<SoundPlayer>();
 		inventory = GetComponent<PlayerInventory> ();
 		input = GetComponent<InputScript> ();
 		PMS = GetComponent<PlayerMovementScript> ();
@@ -91,6 +93,7 @@ public class PlayerAttack : MonoBehaviour {
 		torch.transform.eulerAngles = new Vector3 (0, 0, PMS.getFacingDegree ());
 
 		torch.SetActive (true);
+		sound.PlayFire ();
 		yield return new WaitForSeconds (.1f);
 		torch.SetActive (false);
 		yield return new WaitForSeconds (.2f);
@@ -99,6 +102,7 @@ public class PlayerAttack : MonoBehaviour {
 	}
     void UseBomb(){
 		if (bomb.activeSelf == false) {
+			sound.PlayBombLay ();
 			bomb.transform.position = transform.position;
 			bomb.SetActive (true);
 		}
@@ -114,6 +118,7 @@ public class PlayerAttack : MonoBehaviour {
 		yield return new WaitForSeconds (.1f);
 		whip.transform.eulerAngles = new Vector3 (0, 0, PMS.getFacingDegree ());
 		whip.SetActive (true);
+		sound.PlayWhip();
 		yield return new WaitForSeconds (.2f);
 		whip.SetActive (false);
 		yield return new WaitForSeconds (.1f);
@@ -130,7 +135,8 @@ public class PlayerAttack : MonoBehaviour {
 		PMS.DisableMovement();
 		yield return new WaitForSeconds (.1f);
 		waterBucket.transform.eulerAngles = new Vector3 (0, 0, PMS.getFacingDegree ());
-
+		//TODO: add water sound and uncomment
+		//sound.PlayWater ();
 		waterBucket.SetActive (true);
 		yield return new WaitForSeconds (.1f);
 		waterBucket.SetActive (false);
