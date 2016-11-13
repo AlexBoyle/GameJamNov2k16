@@ -24,8 +24,8 @@ public class MasterItemList : MonoBehaviour {
 	}
 	public ItemScript getItem(Item a){
 		foreach (GameObject b in Items) {
-			if (b.GetComponent<ItemScript> ().item == a)
-				return b.GetComponent<ItemScript>();
+			if (b.GetComponentInChildren<ItemScript> ().item == a)
+				return b.GetComponentInChildren<ItemScript>();
 		}
 		return null;
 	}

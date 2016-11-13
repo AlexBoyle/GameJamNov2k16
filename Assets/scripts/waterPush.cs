@@ -14,13 +14,16 @@ public class waterPush : MonoBehaviour {
 	
 	}
 	void OnTriggerEnter2D(Collider2D other){
-		
-		if (other.tag == "bombParent" || other.tag == "Player" || other.tag == "Ingredient" || other.tag ==  "Item") {
-			if (other.tag == "Player" && other.GetComponent<InputScript>().playerNumber != input.playerNumber) {
-				other.GetComponent<PlayerMovementScript> ().DisableMovementTimed ( .3f);
+		Debug.Log (other.tag);
+		if (other.tag == "bombParent" || other.tag == "Player" || other.tag == "Ingredient" || other.tag ==  "ItemRB") {
+			Vector2 direction = other.transform.position - transform.parent.position;
+			if (other.tag == "Player" && other.GetComponent<InputScript> ().playerNumber != input.playerNumber) {
+				other.GetComponent<PlayerMovementScript> ().DisableMovementTimed (.3f);
+				other.GetComponent<Rigidbody2D> ().AddForce (Vector3.Normalize (direction) * speed);
+			} else if (other.tag != "Player") {
+				other.GetComponentInChildren<Rigidbody2D> ().AddForce (Vector3.Normalize( direction) * speed);
+
 			}
-			Vector2 direction =  other.transform.position - transform.parent.position;
-			other.GetComponent<Rigidbody2D> ().AddForce (Vector3.Normalize( direction) * speed);
 		}
 
 	}
